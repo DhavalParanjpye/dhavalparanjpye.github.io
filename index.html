@@ -10,18 +10,20 @@
     html, body { width:100%; height:100%; overflow:hidden; font-family:Calibri, sans-serif; color:white; background:#0a1b36; }
 
     /* starfield canvas sits behind everything */
-    canvas#starfield {
-      position:fixed; top:0; left:0;
-      width:100%; height:100%;
-      z-index:-1;
-    }
+canvas#starfield {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  z-index: 0;
+  pointer-events: none;
+}
 
-    /* top nav */
-    nav.top-nav {
-      display: flex;
-      align-items: center;
-      padding: 20px 40px;
-    }
+/* push your nav and main container above the stars */
+nav.top-nav,
+.container {
+  position: relative;
+  z-index: 1;
+}
     nav.top-nav a {
       text-decoration: none;
       color: white;
