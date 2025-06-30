@@ -1,105 +1,113 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>About – Dhaval P.</title>
   <style>
-    /* reset & base */
-    * { margin:0; padding:0; box-sizing:border-box; }
-    html, body { width:100%; height:100%; overflow:hidden; font-family:Calibri, sans-serif; color:white; background:#0a1b36; }
-
-    /* starfield canvas sits behind everything */
-canvas#starfield {
-  position: fixed;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  z-index: 0;
-  pointer-events: none;
-}
-
-/* push your nav and main container above the stars */
-nav.top-nav,
-.container {
-  position: relative;
-  z-index: 1;
-}
-    nav.top-nav a {
-      text-decoration: none;
+    /* Reset & base */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body {
+      width: 100%; height: 100%;
+      /* blue → black gradient */
+      background: linear-gradient(135deg, #001f3f 0%, #000000 100%);
+      font-family: Calibri, sans-serif;
       color: white;
-      font-size: 1rem;
-      margin-right: 30px;
+      overflow: hidden;
     }
+
+    /* Starfield canvas */
+    canvas#starfield {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    /* Keep content above stars */
+    nav.top-nav, .container {
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Top navigation (centered) */
+    nav.top-nav {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      padding: 20px 0;
+    }
+    nav.top-nav a {
+      color: white;
+      text-decoration: none;
+      font-size: 1rem;
+      transition: opacity 0.2s;
+    }
+    nav.top-nav a:hover { opacity: 0.7; }
+    /* LinkedIn icon sits at end but still in center flow */
     nav.top-nav a.linkedin {
-      margin-left: auto;
-      color: #38FF8A; /* neon-green accent */
+      color: #38FF8A;
     }
     nav.top-nav a.linkedin svg {
       width: 24px; height: 24px;
-      vertical-align: middle;
       fill: currentColor;
+      vertical-align: middle;
     }
-    nav.top-nav a:hover { opacity: .75; }
 
-    /* layout */
+    /* Main wrapper, center page vertically + horizontally */
     .container {
-      display: flex;
-      width: 100%;
-      height: calc(100% - 80px); /* account for nav height */
-      padding: 40px;
-    }
-    .left {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      gap: 20px;
-    }
-    .right {
-      flex: 1;
       display: flex;
       justify-content: center;
       align-items: center;
+      /* allow wrapping on small screens */
+      flex-wrap: wrap;
+      text-align: center;
+      width: 100%;
+      height: calc(100% - 80px); /* subtract nav height */
+      padding: 20px;
+    }
+    .left, .right {
+      flex: 1 1 300px;
+      max-width: 500px;
+      margin: 20px;
     }
 
-    /* typography */
+    /* Typography */
     h1 {
       font-size: 3rem;
       line-height: 1.2;
     }
-    h1 span {
-      color: #38FF8A;
-    }
+    h1 span { color: #38FF8A; }
     p {
       font-size: 1.125rem;
       line-height: 1.6;
+      margin-top: 0.5em;
     }
 
-    /* button */
+    /* Snug button */
     .btn {
       display: inline-block;
-      margin-top: 20px;
-      padding: 12px 24px;
+      margin-top: 1.5em;
+      padding: 10px 20px;          /* tighter padding */
       border: 2px solid #38FF8A;
+      border-radius: 4px;
       color: #38FF8A;
       text-decoration: none;
       font-size: 1rem;
-      border-radius: 4px;
+      transition: background 0.2s;
     }
     .btn:hover { background: rgba(56,255,138,0.1); }
 
-    /* robot image */
-    .robot {
-      max-width: 100%;
-      height: auto;
-    }
+    /* Robot graphic */
+    .robot { max-width: 100%; height: auto; }
   </style>
 </head>
 <body>
-  <!-- starfield -->
+  <!-- animation layer -->
   <canvas id="starfield"></canvas>
 
-  <!-- top nav -->
+  <!-- centered nav -->
   <nav class="top-nav">
     <a href="https://dhavalparanjpye.github.io/index.html">About</a>
     <a href="https://dhavalparanjpye.github.io/blog.html">Projects</a>
@@ -109,14 +117,18 @@ nav.top-nav,
        href="https://www.linkedin.com/in/dhaval-paranjpye/"
        target="_blank"
        aria-label="LinkedIn">
-      <!-- simple LinkedIn SVG -->
       <svg viewBox="0 0 448 512">
-        <path d="M100.28 448H7.4V148.9h92.88zm-46.14-340.1C24.12 107.9 0 83.78 0 53.28 0 23.79 24.12-.33 54.14-.33S108.3 23.79 108.3 53.28c0 30.5-24.12 54.62-54.16 54.62zM447.9 448h-92.68V302.4c0-34.7-.7-79.2-48.27-79.2-48.3 0-55.7 37.7-55.7 76.7V448h-92.7V148.9h89.1v40.8h1.3c12.4-23.5 42.6-48.3 87.6-48.3 93.8 0 111.1 61.8 111.1 142.3V448z"/>
+        <path d="M100.28 448H7.4V148.9h92.88zm-46.14-340.1C24.12 107.9 0 83.78 0 
+                 53.28 0 23.79 24.12-.33 54.14-.33S108.3 23.79 108.3 
+                 53.28c0 30.5-24.12 54.62-54.16 54.62zM447.9 448h-92.68V302.4c0-34.7-
+                 .7-79.2-48.27-79.2-48.3 0-55.7 37.7-55.7 76.7V448h-92.7V148.9h89.1v40.8
+                 h1.3c12.4-23.5 42.6-48.3 87.6-48.3 93.8 0 111.1 61.8 111.1 
+                 142.3V448z"/>
       </svg>
     </a>
   </nav>
 
-  <!-- main -->
+  <!-- centered content -->
   <div class="container">
     <div class="left">
       <h1>Hi! I am <span>Dhaval P.</span></h1>
@@ -125,8 +137,7 @@ nav.top-nav,
       <a href="mailto:dhaval.paranjpye@gmail.com" class="btn">Get in Touch</a>
     </div>
     <div class="right">
-      <!-- replace with your robot SVG/PNG -->
-      <img src="robot.svg" alt="Sleek white robot" class="robot">
+      <img src="robot.svg" alt="Sleek white robot" class="robot" />
     </div>
   </div>
 
@@ -134,19 +145,18 @@ nav.top-nav,
   <script>
     (function() {
       const canvas = document.getElementById('starfield');
-      const ctx = canvas.getContext('2d');
-      let stars = [];
+      const ctx    = canvas.getContext('2d');
       const STAR_COUNT = 400;
+      let stars = [];
 
       function resize() {
-        canvas.width = window.innerWidth;
+        canvas.width  = window.innerWidth;
         canvas.height = window.innerHeight;
       }
-
       window.addEventListener('resize', resize);
       resize();
 
-      // init stars
+      // populate stars
       for (let i = 0; i < STAR_COUNT; i++) {
         stars.push({
           x: Math.random() * canvas.width,
@@ -156,16 +166,16 @@ nav.top-nav,
         });
       }
 
+      // draw + animate
       function draw() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         ctx.fillStyle = 'white';
-        stars.forEach(star => {
+        stars.forEach(s => {
           ctx.beginPath();
-          ctx.arc(star.x, star.y, star.r, 0, Math.PI * 2);
+          ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
           ctx.fill();
-          // move slowly downward
-          star.y += star.speed;
-          if (star.y > canvas.height) star.y = 0;
+          s.y += s.speed;
+          if (s.y > canvas.height) s.y = 0;
         });
         requestAnimationFrame(draw);
       }
